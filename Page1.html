@@ -6,14 +6,6 @@
 
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css//bootstrap.css">
 
-    <script>
-        function myfunction()
-        {
-          console.log("hover");
-        }
-        
-    </script>
-
 		</style>
 	</head>
 
@@ -40,18 +32,18 @@
 
 		
 		<div class="card-deck">
-  			<div onclick="myfunction()", class="card">
-    		<img class="card-img-top" src="dark.jpg" alt="HolaDarth">
+  			<div onclick="myfunction()", onmouseover = "appelAlt(1)", class="card">
+    		<img class="card-img-top" src="dark.jpg" alt="Je suis ton pere">
 
-    		<div class="card-body">
+    		<div class="result">
       			<h4 class="card-title">Darth Vader</h4>
       			<p class="card-text">Personnage 1.</p>
       			<p class="card-text"><small class="text-muted">Last updated...</small></p>
     		</div>
   		</div>
 
-  		<div onclick="myfunction()", class="card">
-    		<img class="card-img-top" src="personnageVert.png" alt="Card image cap">
+  		<div onclick="myfunction()", onmouseover = "appelAlt(2)", class="card">
+    		<img class="card-img-top" src="personnageVert.png" alt="Bonjour Star Wars">
     		<div class="card-body">
       			<h4 class="card-title">Personnage 2</h4>
       			<p class="card-text">Personnage tres importat</p>
@@ -59,8 +51,8 @@
     		</div>
   		</div>
 
-  		<div onclick="myfunction()", class="card">
-    		<img class="card-img-top" src="robot.png" alt="Card image cap">
+  		<div onclick="myfunction()", onmouseover= "appelAlt(3)", class="card">
+    		<img class="card-img-top" src="robot.png" alt="Bit bot bit">
     		<div class="card-body">
       			<h4 class="card-title">Robot</h4>
       			<p class="card-text">Personnage 3 de Star Wars</p>
@@ -68,6 +60,23 @@
     		</div>
   		</div>
 </div>
+  
+  <script type="text/javascript", src = "node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript", src = "jQuery.js"></script>
+
+  <script >
+      function myfunction()
+      {
+        console.log("survol");
+      }
+
+        function appelAlt(per)
+        {
+          iman = document.images[per].alt;
+          console.log(iman);
+        }
+        
+    </script>
 
 
 	</body>
