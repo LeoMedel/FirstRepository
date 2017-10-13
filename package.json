@@ -1,0 +1,24 @@
+{
+  "name": "firstrepository",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoMedel/FirstRepository.git"
+  },
+  "author": "\"Leonel Medel\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeoMedel/FirstRepository/issues"
+  },
+  "homepage": "https://github.com/LeoMedel/FirstRepository#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.5"
+  }
+}
