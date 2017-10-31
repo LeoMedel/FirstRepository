@@ -69,7 +69,7 @@
     </div>
 
     <div class="list-group">
-    	<button onclick="cargaPersonajes()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"> Personnage de Star Wars</button>
+    	<button onclick="cargaPersonajes('https://swapi.co/api/people/?format=json')" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"> Personnage de Star Wars</button>
 	</div>
     <!-- Button trigger modal 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -99,8 +99,8 @@
 		</div>
     </div>
     
-    <button type="button" class="btn btn-primary sui">Suivant, Plus des Personnages</button>
-
+    <button type="button" class="btn btn-primary btn-lg prevPag"><----</button>
+    <button type="button" class="btn btn-primary btn-lg nextPag">----></button>
 
 
     <script type="text/javascript", src = "node_modules/popper.js/dist/umd/popper.min.js"></script>

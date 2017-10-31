@@ -1,5 +1,4 @@
 
-
 function myfunction()
       {
         console.log("survol");
@@ -12,11 +11,11 @@ function appelAlt(per)
 }
 
 
-var appiSW = "https://swapi.co/api/people/?format=json";
-
-
-function creeModal(nom, mass, eyes, he, hair, skin, birth, gender)
+function creeModal(nom, mass, eyes, he, hair, skin, birth, gender, personnage)
 {
+	console.log("numero de peliculas: "+personnage.length);
+
+
 	$( ".modal-body" ).empty();
 	$(".modal-body").append("<ul class='list-group'>"+
 								
@@ -34,75 +33,101 @@ function creeModal(nom, mass, eyes, he, hair, skin, birth, gender)
 
 									
 								"<li class='list-group-item active'>Films</li>"+
-								"<li class='list-group-item film'></li>"+
+								"<li class='list-group-item film'>Loading...</li>"+
 							"</ul>");
+	$.ajax({
+		url: personnage,
+		type: 'GET',
+		dataType: 'json',
+		success: function(peli)
+		{
+
+			console.log("pelicula: "+peli.title);
+			$( ".film" ).empty();
+			$(".film").append("<p class='film'>"+peli.title+"</p>");
+		}
+	})
+	
 }
 
 
-function cargaPersonajes()
+function cargaPersonajes(pag)
 {
+	if(pag === "https://swapi.co/api/people/?format=json" || pag !=="null")
+	{
+		console.log("Page Valide");
 
-	$.ajax({
-		url: "https://swapi.co/api/people/?format=json",
-		type: 'GET',
-		dataType: 'json',
-		success: function(personnage)
-		{
-			$( ".list-group" ).empty();
-			$( ".nom" ).empty();
-			$(".list-group").append("<button type='button' class='list-group-item list-group-item-action active'>List des Personnage</button>");
-			$(".sui").attr("id", personnage.next);
-			for (var i = 0; i < personnage.results.length; i++)
+		$.ajax({
+			url: pag,
+			type: 'GET',
+			dataType: 'json',
+			success: function(personnage)
 			{
-				var nomPer = personnage.results[i].name;
-				var mass = personnage.results[i].mass;
-				var eye = personnage.results[i].eye_color;
-				var hei = personnage.results[i].height;
-				var hair = personnage.results[i].hair_color;
-				var skin = personnage.results[i].skin_color;
-				var birth = personnage.results[i].birth_year;
-				var gen = personnage.results[i].gender;
+				console.log("pagina anterior "+personnage.previous);
+				$( ".list-group" ).empty();
+				$( ".nom" ).empty();
+				$(".list-group").append("<button type='button' class='list-group-item list-group-item-action active'>List des Personnage</button>");
+				$(".prevPag").attr("onclick", "cargaPersonajes('"+personnage.previous+"')");
+				$(".nextPag").attr("onclick", "cargaPersonajes('"+personnage.next+"')");
 
-				/*
-				console.log('Personnage: '+nomPer);
-				console.log('hair color: '+ hei);
-				console.log('skin color: '+ skin);
-				console.log('eye color: '+eye);
-				console.log('birth year: '+ birth);
-				console.log('gender: '+gen);
-				*/
 
-				//AJOUTER Nom aux images
-				$(".result"+i).append("<h4 class = 'nom"+i+"'></h4>");
-				$( ".nom"+i).html( personnage.results[i].name);
-
-				//Procediure
-            	$(".list-group").append("<button type='button', onclick = \"creeModal('"+nomPer+"', '"+mass+"', '"+eye+"', '"+hei+"', '"+hair+"', '"+skin+"', '"+birth+"', '"+gen+"')\","+
-            	 						"class='list-group-item list-group-item-action', data-toggle='modal', data-target='#myModal'>"+personnage.results[i].name+"</button>");
-
-	            
-	            for(var e = 0; e< personnage.results[i].films.length; e++)
-	            {
-	            	/*
-	            	console.log("   Hola:          "+e +"   "+personnage.results[i].name);
-	            	console.log("   PELI:          "+e +"   "+personnage.results[i].films);
-	            	console.log("   PELICULAS:          "+e +"   "+personnage.results[i].films[e]);*/
-	            	console.log("   Nombre PELICULA:          "+e +"   "+personnage.results[i].films[e].title);
-	            	
-	            	$.ajax({
-						url: personnage.results[i].films[e],
-						type: 'GET',
-						dataType: 'json',
-						success: function(peli)
-						{
-							$(".film").append("<p class='films'>"+peli.title+"</p>");
-						}
-					})
+				for (var i = 0; i < personnage.results.length; i++)
+				{
+					console.log("Personaje "+i+" "+personnage.results[i].name);
 					
-	            }	
-			}
+					var nomPer = personnage.results[i].name;
+					var mass = personnage.results[i].mass;
+					var eye = personnage.results[i].eye_color;
+					var hei = personnage.results[i].height;
+					var hair = personnage.results[i].hair_color;
+					var skin = personnage.results[i].skin_color;
+					var birth = personnage.results[i].birth_year;
+					var gen = personnage.results[i].gender;
+					var fil = personnage.results[i].films;
+					
+					//AJOUTER Nom aux images
+					if(pag === "https://swapi.co/api/people/?format=json")
+					{
+						$(".result"+i).append("<h4 class = 'nom"+i+"'></h4>");
+						$( ".nom"+i).html( personnage.results[i].name);
+					}
+					
+					var pel = personnage.results[i].films+" "; 
+					//console.log("Que resulto de PELICULAS: "+personnage.results[i].films);
+					
+					//onclick = \"creeModal('"+nomPer+"', '"+mass+"', '"+eye+"', '"+hei+"', '"+hair+"', '"+skin+"', '"+birth+"', '"+gen+"', '"+personnage.results[i].films[e]+"')\",
+					
+	            	for(var e = 0; e< personnage.results[i].films.length; e++)
+		            {
+		            	console.log("Mega URL: "+personnage.results[i].films);
+		            	console.log("Que es esto? "+personnage.results[i].films[e]);
+		            	$(".list-group").append("<button type='button', onclick = \"creeModal('"+nomPer+"', '"+mass+"', '"+eye+"', '"+hei+"', '"+hair+"', '"+skin+"', '"+birth+"', '"+gen+"', '"+personnage.results[i].films[e]+"')\","+
+	            	 						"class='list-group-item list-group-item-action perso', data-toggle='modal', data-target='#myModal'>"+personnage.results[i].name+"</button>");
+		            	//$(".perso").attr("onclick", "creeModal('"+nomPer+"', '"+mass+"', '"+eye+"', '"+hei+"', '"+hair+"', '"+skin+"', '"+birth+"', '"+gen+"', '"+personnage.results[i].films[e]+"')");
+	            	
+		            	/*
+		            	$.ajax({
+							url: personnage.results[i].films[e],
+							type: 'GET',
+							dataType: 'json',
+							success: function(peli)
+							{
 
-		}
-	});
-	
+								console.log(": "+peli.title);
+								//$(".film").append("<p class='film'>"+peli.title+"</p>");
+							}
+						})
+						*/
+		            }
+				}
+
+			}
+		});
+
+	}
+	else if (pag === "null")
+	{
+		console.log("Ya son todas las paginas");
+
+	}
 }
