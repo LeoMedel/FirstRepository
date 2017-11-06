@@ -28,7 +28,7 @@ function cargaPersonajes(pag)
 			//SHOW() et HIDE(); pour montrer les buttons 'next' et 'previous' dynamiquement
 			if(personnage.next !== null && personnage.previous !== null)
 			{
-				console.log("PAGE INTERMEDIAIRE .........................................................................................................................");
+				console.log("PAGE INTERMEDIAIRE:  "+ pag);
 				$(".prevPag").removeClass("invisible");
 				$(".nextPag").removeClass("invisible");
 
@@ -37,13 +37,13 @@ function cargaPersonajes(pag)
 			}
 			else if (personnage.next === null)
 			{
-				console.log("DERNIERE PAGE DE PERSONNAGE .........................................................................................................................");
+				console.log("DERNIERE PAGE:  "+pag);
 				$(".prevPag").show();
 				$(".nextPag").hide();
 			}
 			else if (personnage.previous === null)
 			{
-				console.log("PREMIERE PAGE DE PERSONNAGE .........................................................................................................................");
+				console.log("PREMIERE PAGE:  "+pag);
 				$(".prevPag").hide();
 				$(".nextPag").show();
 			}
