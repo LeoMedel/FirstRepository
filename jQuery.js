@@ -1,111 +1,128 @@
+function myfunction(){
+  	console.log("survol");
+}
 
-function myfunction()
-      {
-        console.log("survol");
-      }
-
-function appelAlt(per)
-{
+function appelAlt(per){
 	iman = document.images[per].alt;
 	console.log(iman);
 }
 
-
-function creeModal(nom, mass, eyes, he, hair, skin, birth, gender, personnage)
-{
-	
-	$( ".modal-body" ).empty();
-	$(".modal-body").append("<ul class='list-group'>"+
-									"<li class='list-group-item'>"+
-										"<h1 class = 'nom'>"+nom+"</h1>"+
-									"</li>"+
-									"<li class='list-group-item'>Masse: "+mass+"</li>"+
-									"<li class='list-group-item'>Couleur des yeux: "+eyes+"</li>"+
-									"<li class='list-group-item'>Taille: "+he+"</li>"+
-									"<li class='list-group-item'>Couleur des cheveux: "+hair+"</li>"+
-									"<li class='list-group-item'>Peau: "+skin+"</li>"+
-									"<li class='list-group-item'>Joyeux anniversaire: "+birth+"</li>"+
-									"<li class='list-group-item'>Genre: "+gender+"</li>"+
-								"<li class='list-group-item active'>Films</li>"+
-								"<li class='list-group-item film'>Loading...</li>"+
-							"</ul>");
-	
-	$.ajax({
-		url: personnage,
-		type: 'GET',
-		dataType: 'json',
-		success: function(peli)
-		{
-			console.log("pelicula: "+peli.title);
-			$( ".film" ).empty();
-			$(".film").append("<p class='film'>"+peli.title+"</p>");
-		}
-	})
-}
-
-
 function cargaPersonajes(pag)
 {
-	if(pag === "https://swapi.co/api/people/?format=json" || pag !=="null")
-	{
-		console.log("Page Valide");
+	$.ajax({
+		url: pag,
+		type: 'GET',
+		dataType: 'json',
+		success: function(personnage)
+		{
+			//Creation des LISTE DE PERSONNAGE DE "STAR WARS"
+			$( ".list-group" ).empty();
+			$( ".nom" ).empty();
+			$(".list-group").append("<button type='button' class='list-group-item list-group-item-dark active'>List des Personnage</button>");
+			$(".prevPag").attr("onclick", "cargaPersonajes('"+personnage.previous+"')");
+			$(".nextPag").attr("onclick", "cargaPersonajes('"+personnage.next+"')");
+			
+			$(".prevPag").removeClass("invisible");
+			$(".nextPag").removeClass("invisible");
 
+			//SHOW() et HIDE(); pour montrer les buttons 'next' et 'previous' dynamiquement
+			if(personnage.next !== null && personnage.previous !== null)
+			{
+				console.log("PAGE INTERMEDIAIRE .........................................................................................................................");
+				$(".prevPag").removeClass("invisible");
+				$(".nextPag").removeClass("invisible");
+
+				$(".prevPag").show();
+				$(".nextPag").show();
+			}
+			else if (personnage.next === null)
+			{
+				console.log("DERNIERE PAGE DE PERSONNAGE .........................................................................................................................");
+				$(".prevPag").show();
+				$(".nextPag").hide();
+			}
+			else if (personnage.previous === null)
+			{
+				console.log("PREMIERE PAGE DE PERSONNAGE .........................................................................................................................");
+				$(".prevPag").hide();
+				$(".nextPag").show();
+			}
+
+			for (var i = 0; i < personnage.results.length; i++)
+			{
+				//Agregation des Noms aux Images
+				if(pag === "https://swapi.co/api/people/?page=1&format=json")
+				{
+					$(".result"+i).empty();
+					$(".result"+i).append("<h4 class = 'nom"+i+"'></h4>");
+					$( ".nom"+i).html(personnage.results[i].name);
+				}
+
+				//Variables avec les valeurs de l'API 
+				var nomPer = personnage.results[i].name;
+				var mass = personnage.results[i].mass;
+				var eye = personnage.results[i].eye_color;
+				var hei = personnage.results[i].height;
+				var hair = personnage.results[i].hair_color;
+				var skin = personnage.results[i].skin_color;
+				var birth = personnage.results[i].birth_year;
+				var gen = personnage.results[i].gender;
+				var fl = personnage.results[i].films;
+
+				console.log("Personnage "+i+": "+ nomPer);
+
+				//Creation des elements de la Liste de Personnage avec son Modal
+				$(".list-group").append("<button type='button', onclick = \"creeModal('"+nomPer+"', '"+mass+"', '"+eye+"', '"+hei+"', '"+hair+"', '"+skin+"', '"+birth+"', '"+gen+"', '"+personnage.results[i].films.length+"', '"+fl+"')\","+
+	            							"class='list-group-item list-group-item-action perso', data-toggle='modal', data-target='#myModal'>"+personnage.results[i].name+"</button>");
+			}
+		}
+	});
+}
+
+function creeModal(nom, mass, eyes, he, hair, skin, birth, gender, numPel, fil)
+{
+	console.log("Personnage selectioné:           "+nom);
+	//Transfomation du String a Array
+	var res = fil.split(',');
+	console.log(res);
+
+	//Pour eviter la concatenation de contenu 
+	$( ".modal-body" ).empty();
+
+	//Creation du Modal d'un personnage
+	$(".modal-body").append(
+		"<ul class='list-group info'>"+
+			"<li class='list-group-item'> <h1 class = 'nom'>"+nom+"</h1></li>"+
+			"<li class='list-group-item list-group-item-dark'> <h5>Mass: </h5> </li>"+
+			"<li class='list-group-item'>"+mass+"</li>"+
+			"<li class='list-group-item list-group-item-dark'><h5>Couleur des yeux:</h5> </li>"+
+			"<li class='list-group-item'>"+eyes+"</li>"+
+			"<li class='list-group-item list-group-item-dark'><h5>Taille:</h5></li>"+
+			"<li class='list-group-item'>"+he+"</li>"+
+			"<li class='list-group-item list-group-item-dark'><h5>Couleur des cheveux:</h5></li>"+
+			"<li class='list-group-item'>"+hair+"</li>"+
+			"<li class='list-group-item list-group-item-dark'><h5>Peau:</h5></li>"+
+			"<li class='list-group-item'>"+skin+"</li>"+
+			"<li class='list-group-item list-group-item-dark'><h5>Joyeux anniversaire:</h5></li>"+
+			"<li class='list-group-item'>"+birth+"</li>"+
+			"<li class='list-group-item list-group-item-dark'><h5>Genre:</h5></li>"+
+			"<li class='list-group-item'>"+gender+"</li>"+
+			"<li class='list-group-item list-group-item-dark'><h5>Films:</h5>"+
+			"</li>"+
+		"</ul>");
+
+	//"FOR" pour creer les elements des noms de chaque film
+	for (var i = 0; i < numPel; i++)
+	{
 		$.ajax({
-			url: pag,
+			url: res[i],
 			type: 'GET',
 			dataType: 'json',
-			success: function(personnage)
+			success: function(peli)
 			{
-				console.log("Que es personnage???: " + personnage);
-				console.log("pagina anterior "+personnage.previous);
-				$( ".list-group" ).empty();
-				$( ".nom" ).empty();
-				$(".list-group").append("<button type='button' class='list-group-item list-group-item-action active'>List des Personnage</button>");
-				$(".prevPag").attr("onclick", "cargaPersonajes('"+personnage.previous+"')");
-				$(".nextPag").attr("onclick", "cargaPersonajes('"+personnage.next+"')");
-
-
-				for (var i = 0; i < personnage.results.length; i++)
-				{
-					//Aouter nom aux Images
-					if(pag === "https://swapi.co/api/people/?format=json")
-					{
-						$(".result"+i).append("<h4 class = 'nom"+i+"'></h4>");
-						$( ".nom"+i).html( personnage.results[i].name);
-					}
-
-					console.log("Personaje "+i+" "+personnage.results[i].name);
-					
-					var nomPer = personnage.results[i].name;
-					var mass = personnage.results[i].mass;
-					var eye = personnage.results[i].eye_color;
-					var hei = personnage.results[i].height;
-					var hair = personnage.results[i].hair_color;
-					var skin = personnage.results[i].skin_color;
-					var birth = personnage.results[i].birth_year;
-					var gen = personnage.results[i].gender;
-					var fl = personnage.results[i].films;
-					console.log("Que tiene fl: "+fl[0]);
-					var numPel = personnage.results[i].films.length;
-					
-					console.log("Mega URL: "+personnage.results[i].films);
-					console.log("Mega URL 1111: "+personnage.results[i].films[0]);
-		            console.log("LONGITUD DE LA MEGA URL: " + personnage.results[i].films.length);
-
-
-	            	for(var e = 0; e< personnage.results[i].films.length; e++)
-		            {
-		            	$(".list-group").append("<button type='button', onclick = \"creeModal('"+nomPer+"', '"+mass+"', '"+eye+"', '"+hei+"', '"+hair+"', '"+skin+"', '"+birth+"', '"+gen+"', '"+fl[e]+"')\","+
-		            							"class='list-group-item list-group-item-action perso', data-toggle='modal', data-target='#myModal'>"+personnage.results[i].name+"</button>");
-
-		            }
-				}
+				console.log("Film:  "+peli.title);
+				$(".info").append("<li class='list-group-item '><p>"+peli.title+"</p></li>");
 			}
-		});
-
-	}
-	else if (pag === "null")
-	{
-		alert("Il n'y a plus de page de personnages de Star Wars");
+		})
 	}
 }
