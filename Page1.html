@@ -8,87 +8,89 @@
 
 	<body>	
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  		<a class="navbar-brand" href="#">Star Wars</a>
+	  		<a class="navbar-brand" href="#">STAR WARS jQuery</a>
 	  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-	    	   <span class="navbar-toggler-icon"></span>
+	  			<span class="navbar-toggler-icon"></span>
 	  		</button>
+
 	  		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	    		<div class="navbar-nav">
-	      			<a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-	    		</div>
+	  			<div class="navbar-nav">
+	  				<a class="nav-item nav-link active" href="index.html">Exercise Bootstrap<span class="sr-only">(current)</span></a>
+	  				<a class="nav-item nav-link active" href="PageVue.html">STAR WARS Vue<span class="sr-only">(current)</span></a>
+	  			</div>
 	  		</div>
-		</nav>
+	  	</nav>
 		
-    <div class="card bg-dark text-white">
-  		<img class="card-img" src="logostar.png" alt="Card image">	
-	</div>
-
-
-	<div class="card-deck">
-		<div onclick="myfunction()", onmouseover = "appelAlt(1)", class="card">
-        	<img class="card-img-top" src="lukesky.jpg" alt="Star Wars">
-        	<div class="result0"></div>
-        </div>
-
-		<div onclick="myfunction()", onmouseover= "appelAlt(2)", class="card">
-			<img class="card-img-top" src="robot1.png" alt="Wiiii, C-3PO">
-			<div class="result1"></div>
+		<div class="card bg-dark text-white">
+			<img class="card-img" src="logostar.png" alt="Card image">
 		</div>
 
-		<div onclick="myfunction()", onmouseover= "appelAlt(3)", class="card">
-			<img class="card-img-top" src="robot.png" alt="bit, bot: R2-D2">
-			<div class="result2"></div>
-		</div>
+		<div class="card-deck">
+			<div onclick="myfunction()", onmouseover = "appelAlt(1)", class="card">
+				<img class="card-img-top" src="lukesky.jpg" alt="Star Wars">
+				<div class="result0"></div>
+			</div>
 
-		<div onclick="myfunction()", onmouseover = "appelAlt(4)", class="card">
-			<img class="card-img-top" src="dark.jpg" alt="Je suis ton pere">
-			<div class="result3"></div>
-		</div>
-	    
-	    <div onclick="myfunction()", onmouseover = "appelAlt(5)", class="card">
-	    	<img class="card-img-top" src="Leia.jpg" alt="LeiaOrgana">
-	    	<div class="result4"></div>
-	    </div>
+			<div onclick="myfunction()", onmouseover= "appelAlt(2)", class="card">
+				<img class="card-img-top" src="robot1.png" alt="Wiiii, C-3PO">
+				<div class="result1"></div>
+			</div>
 
-	    <div onclick="myfunction()", onmouseover = "appelAlt(6)", class="card">
-	    	<img class="card-img-top" src="owen.jpg" alt="hola owen">
-	    	<div class="result5"></div>
-	    </div>
-    </div>
+			<div onclick="myfunction()", onmouseover= "appelAlt(3)", class="card">
+				<img class="card-img-top" src="robot.png" alt="bit, bot: R2-D2">
+				<div class="result2"></div>
+			</div>
 
-	<div class="list-group">
-		<button onclick="cargaPersonajes('https://swapi.co/api/people/?format=json')" type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off"> Personnage de Star Wars</button>
-	</div>
-	<div class="card-deck">
-		<div class="card">
-			<button type="button" class="btn btn-primary btn-lg btn-outline-dark prevPag invisible"><- Previous</button>
-		</div>
-		<div class="card">
-			<button type="button" class="btn btn-primary btn-lg btn-outline-dark nextPag invisible">Next--></button>
-		</div>
-	</div>
-	
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	    <div class='modal-dialog' role='document'>
-			<div class='modal-content'>
-				<div class='modal-header'>
-					<h5 class='modal-title' id='exampleModalLabel'>Details de Personnage</h5>
-				</div>
-				<div class='modal-body'> 
-				</div>				
-				<div class='modal-footer'>
-					<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-				</div>
+			<div onclick="myfunction()", onmouseover = "appelAlt(4)", class="card">
+				<img class="card-img-top" src="dark.jpg" alt="Je suis ton pere">
+				<div class="result3"></div>
+			</div>
+
+			<div onclick="myfunction()", onmouseover = "appelAlt(5)", class="card">
+				<img class="card-img-top" src="Leia.jpg" alt="LeiaOrgana">
+				<div class="result4"></div>
+			</div>
+
+			<div onclick="myfunction()", onmouseover = "appelAlt(6)", class="card">
+				<img class="card-img-top" src="owen.jpg" alt="hola owen">
+				<div class="result5"></div>
 			</div>
 		</div>
-    </div>
-   
-    <script type="text/javascript", src = "node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script type="text/javascript", src = "node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript", src = "node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript", src = "jQuery.js"></script>
 
-	</body>
+		<div class="list-group">
+			<button onclick="cargaPersonajes('https://swapi.co/api/people/?format=json')" type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off"> Personnage de Star Wars</button>
+		</div>
 
+		<div class="card-deck">
+			<div class="card">
+				<button type="button" class="btn btn-primary btn-lg btn-outline-dark prevPag invisible"><- Previous</button>
+			</div>
+
+			<div class="card">
+				<button type="button" class="btn btn-primary btn-lg btn-outline-dark nextPag invisible">Next--></button>
+			</div>
+		</div>
+	
+    <!-- Modal -->
+    	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    		<div class='modal-dialog' role='document'>
+    			<div class='modal-content'>
+    				<div class='modal-header'>
+    					<h5 class='modal-title' id='exampleModalLabel'>Details de Personnage</h5>
+    				</div>
+    				
+    				<div class='modal-body'></div>
+
+    				<div class='modal-footer'>
+    					<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+    				</div>
+    			</div>
+			</div>
+    	</div>
+
+    	<script type="text/javascript", src = "node_modules/popper.js/dist/umd/popper.min.js"></script>
+    	<script type="text/javascript", src = "node_modules/jquery/dist/jquery.min.js"></script>
+    	<script type="text/javascript", src = "node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    	<script type="text/javascript", src = "jQuery.js"></script>
+    </body>
 </html>

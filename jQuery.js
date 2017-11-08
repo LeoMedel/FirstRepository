@@ -51,7 +51,8 @@ function cargaPersonajes(pag)
 			for (var i = 0; i < personnage.results.length; i++)
 			{
 				//Agregation des Noms aux Images
-				if(pag === "https://swapi.co/api/people/?page=1&format=json")
+				//if(pag === "https://swapi.co/api/people/?format=json&page=1")
+				if(personnage.previous === null)
 				{
 					$(".result"+i).empty();
 					$(".result"+i).append("<h4 class = 'nom"+i+"'></h4>");

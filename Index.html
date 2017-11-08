@@ -9,45 +9,43 @@
 		</style>
 	</head>
 
-	<body>	
+	<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Exercise Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  		<a class="navbar-brand" href="#">Home</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    	  <span class="navbar-toggler-icon"></span>
-  		</button>
-  			
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    		<div class="navbar-nav">
-      		<a class="nav-item nav-link active" href="Page1.html">Star Wars<span class="sr-only">(current)</span></a>
-    		</div>
-  		</div>
-		</nav>
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="Page1.html">STAR WARS jQuery<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" href="PageVue.html">STAR WARS Vue<span class="sr-only">(current)</span></a>
+        </div>
+      </div>
+    </nav>
 
-		<div class="card bg-dark text-white">
+    <div class="card bg-dark text-white">
       <img class="card-img" src="mapa-mundi-vector.jpg" alt="Card image">
-  	</div>
+    </div>
 
-		
-		<div class="card-deck">
+    <div class="card-deck">
+      <div onmouseover = "", class="card">
+        <img class="card-img-top" src="france.jpg" alt="Je suis ton pere">
+        <div class="result">
+          <h4 class="card-title">France</h4>
+          <p class="card-text">langue Francaise</p>
+          <p class="card-text"><small class="text-muted">Last updated...</small></p>
+        </div>
+      </div>
 
-  		<div onmouseover = "", class="card">
-    		<img class="card-img-top" src="france.jpg" alt="Je suis ton pere">
-    		<div class="result">
-      		<h4 class="card-title">France</h4>
-      		<p class="card-text">langue Francaise</p>
-      		<p class="card-text"><small class="text-muted">Last updated...</small></p>
-    		</div>
-  		</div>
-
-  		<div onclick="", onmouseover = "", class="card">
-    		<img class="card-img-top" src="mexique.jpg" alt="Bonjour Star Wars">
-    		<div class="card-body">
-      		<h4 class="card-title">Mexique</h4>
-      		<p class="card-text">Viva Mexico</p>
-      		<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    		</div>
-  		</div>
+      <div onclick="", onmouseover = "", class="card">
+        <img class="card-img-top" src="mexique.jpg" alt="Bonjour Star Wars">
+        <div class="card-body">
+          <h4 class="card-title">Mexique</h4>
+          <p class="card-text">Viva Mexico</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
 
   		<div onclick="", onmouseover= "", class="card">
     		<img class="card-img-top" src="etasunis.png" alt="Bit bot bit">
@@ -58,11 +56,9 @@
     		</div>
   		</div>
     </div>
-  
+
     <script type="text/javascript", src = "node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script type="text/javascript", src = "node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript", src = "node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    
-	</body>
-
+  </body>
 </html>
