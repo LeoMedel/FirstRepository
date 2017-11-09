@@ -1,8 +1,8 @@
 # TP Bases du développement d'applications mobile
 
 Voici mon projet, pour pouvoir utiliser bien les technologies dans le développement des aplications mobiles en utilisant, par exemple:
-git, npm pour utiliser plusieurs modules, dans ce projet, comme Bootstrap, Vue, jQuery et Popper.
-Aussi ce projet travaille avce l'API de Star Wars (SWAPI) avec laquelle je fais différentes demandes pour montrer tous les personnages de ce film célèbre et ses détails de chacun.
+git et npm pour utiliser plusieurs modules, dans ce projet, comme Bootstrap, Vue, jQuery et Popper.
+Aussi ce projet travaille avec l'API de Star Wars (SWAPI) avec laquelle je fais différentes demandes pour montrer tous les personnages de ce film célèbre et ses détails.
 
 ### Fichiers:
 
@@ -11,7 +11,7 @@ Aussi ce projet travaille avce l'API de Star Wars (SWAPI) avec laquelle je fais 
 + Popper
 + Page Star Wars avec jquery (Page1.html)
 + Page Star Wars avec vue (PageVue.html)
-+ Fichiers Vue etj Query
++ Fichiers Vue et jQuery
 + Images
 
 ### Installation du Projet:
