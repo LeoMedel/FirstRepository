@@ -56,29 +56,22 @@
         <div class="result5"></div>
       </div>
     </div>
-  <!-- 
-  <div id="lista">
-    <div v-for="per in personnages" >
-      <h6>{{ per.name}}</h6>
-    </div>
-  </div>
--->
+  
   <div id="lista" >
     <ul class="list-group">
-      <button type="button" class="btn btn-secondary" v-on:click="cargaPersonajes('https://swapi.co/api/people/?format=json')" data-toggle="button" aria-pressed="false" autocomplete="off"> Personnage de Star Wars</button>
-
-      <li class="list-group-item active" >Personnages de STAR WARS</li>
+      <button type="button" class="btn btn-secondary btn-block debut" v-on:click="cargaPersonajes('https://swapi.co/api/people/?format=json')" data-toggle="button" aria-pressed="false" autocomplete="off">Charger liste des Personnages de Star Wars</button>
+      <li class="list-group-item active">Personnages de STAR WARS</li>
       <li class="list-group-item list-group-item-action list-group-item-light" data-toggle="modal" data-target="#myModal" v-on:click="creeModal(per)" v-for="per of personnages">
         <h5>{{ per.name}}</h5></li>
     </ul>
 
     <div class="card-deck">
       <div class="card b1">
-        <button type="button" class="btn btn-primary btn-lg btn-outline-dark prevPag" v-on:click="cargaPersonajes('https://swapi.co/api/people/?format=json')">prev</button>
+        <button type="button" class="btn btn-primary btn-lg btn-outline-dark prevPag invisible" v-on:click="dernierePage()"><-- AVANT</button>
       </div>
 
       <div class="card b2">
-        <button type="button" class="btn btn-primary btn-lg btn-outline-dark nextPag" v-on:click="cargaPersonajes('https://swapi.co/api/people/?format=json&page=2')">next</button> 
+        <button type="button" class="btn btn-primary btn-lg btn-outline-dark nextPag invisible" v-on:click="suivantPage()">SUIVANT --></button> 
       </div>
     </div>
   </div>

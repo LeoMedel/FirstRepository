@@ -18,7 +18,7 @@ function cargaPersonajes(pag)
 			//Creation des LISTE DE PERSONNAGE DE "STAR WARS"
 			$( ".list-group" ).empty();
 			$( ".nom" ).empty();
-			$(".list-group").append("<button type='button' class='list-group-item list-group-item-dark active'>List des Personnage</button>");
+			$(".list-group").append("<button type='button' class='list-group-item list-group-item-dark active'>Personnages de STAR WARS</button>");
 			$(".prevPag").attr("onclick", "cargaPersonajes('"+personnage.previous+"')");
 			$(".nextPag").attr("onclick", "cargaPersonajes('"+personnage.next+"')");
 			
@@ -29,9 +29,6 @@ function cargaPersonajes(pag)
 			if(personnage.next !== null && personnage.previous !== null)
 			{
 				console.log("PAGE INTERMEDIAIRE:  "+ pag);
-				$(".prevPag").removeClass("invisible");
-				$(".nextPag").removeClass("invisible");
-
 				$(".prevPag").show();
 				$(".nextPag").show();
 			}
@@ -51,14 +48,12 @@ function cargaPersonajes(pag)
 			for (var i = 0; i < personnage.results.length; i++)
 			{
 				//Agregation des Noms aux Images
-				//if(pag === "https://swapi.co/api/people/?format=json&page=1")
 				if(personnage.previous === null)
 				{
 					$(".result"+i).empty();
 					$(".result"+i).append("<h4 class = 'nom"+i+"'></h4>");
 					$( ".nom"+i).html(personnage.results[i].name);
 				}
-
 				//Variables avec les valeurs de l'API 
 				var nomPer = personnage.results[i].name;
 				var mass = personnage.results[i].mass;
@@ -71,7 +66,6 @@ function cargaPersonajes(pag)
 				var fl = personnage.results[i].films;
 
 				console.log("Personnage "+i+": "+ nomPer);
-
 				//Creation des elements de la Liste de Personnage avec son Modal
 				$(".list-group").append("<button type='button', onclick = \"creeModal('"+nomPer+"', '"+mass+"', '"+eye+"', '"+hei+"', '"+hair+"', '"+skin+"', '"+birth+"', '"+gen+"', '"+personnage.results[i].films.length+"', '"+fl+"')\","+
 	            							"class='list-group-item list-group-item-action perso', data-toggle='modal', data-target='#myModal'>"+personnage.results[i].name+"</button>");

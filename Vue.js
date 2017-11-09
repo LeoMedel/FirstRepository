@@ -1,8 +1,6 @@
-
-//'https://swapi.co/api/people/?format=json'
 new Vue({
 	el: '#lista',
-	//created: function(){ this.cargaPersonajes('https://swapi.co/api/people/?format=json&page=1'); },
+	
 	data: {
 		personnages:[],
 		previ: '',
@@ -11,47 +9,75 @@ new Vue({
 	methods: {
 		cargaPersonajes: function (pag)
 		{
-			console.log("que pagina es: "+pag);
+			console.log("Page actuelle: "+pag);
 
 			this.$http.get(pag).then(function(acteurs){
 	    		this.personnages = acteurs.data.results;
 	    		this.previ = acteurs.data.previous;
 	    		this.nex = acteurs.data.next;
-	    		
-	    		console.log("pag Previa:           "+ this.previ);
-				console.log("Pag Next:           "+this.nex);
 
-				//$( ".prevPag" ).attr("v-on:click", "cargaPersonajes('"+this.previ+"')");
-				//$( ".nextPag" ).attr("v-on:click", "cargaPersonajes('"+this.nex+"')");
-
-				//$( ".b1" ).empty();
-				//$( ".b2" ).empty();
-
-
-				//$(".b1").append("<button type='button' v-on:click=changePage('"+acteurs.data.previous+"') class='btn btn-primary btn-lg btn-outline-dark nextPag' >previous</button>");
-				//$(".b2").append("<button type='button' v-on:click=changePage('"+acteurs.data.next+"') class='btn btn-primary btn-lg btn-outline-dark nextPag'>next</button>");
+	    		$(".nextPag").removeClass("invisible");
+	    		$(".prevPag").removeClass("invisible");
+	    		$(".debut").remove();
 			})
 		},
-		changePage: function ()
+		suivantPage: function ()
 		{
-			if(pag !== null)
+			if(this.nex !== null)
 			{
-				this.$http.get(this.nex).then(function(acteurs){
-					this.personnages = acteurs.data.results;
+				console.log("Page actuelle" + this.nex);
+				this.$http.get(this.nex).then(function(page){
+					this.personnages = page.data.results;
+					this.nex = page.data.next;
+					this.previ = page.data.previous;
+
+					if(this.nex !== null && this.previ !== null)
+					{
+						$(".nextPag").show();
+						$(".prevPag").show();
+					}
+					else
+					{
+						$(".nextPag").hide();
+					}
 				})
 			}
 			else
 			{
-				alert("Ya es todo");
+				alert("C'est la derniere page");
+			}
+		},
+		dernierePage: function ()
+		{
+			if(this.previ !== null)
+			{
+				console.log("Page actuelle" + this.previ);
+				this.$http.get(this.previ).then(function(page){
+					this.personnages = page.data.results;
+					this.previ = page.data.previous;
+					this.nex = page.data.next;
+
+					if(this.previ !== null && this.next !== null)
+					{
+						$(".prevPag").show();
+						$(".nextPag").show();
+					}
+					else
+					{
+						$(".prevPag").hide();
+					}
+				})
+			}
+			else
+			{
+				alert("Vous êtes à la premiere page");
 			}
 		},
 		creeModal: function(item)
 		{
-			console.log("Personnage selectioné:           "+item.name);
-
+			console.log("Personnage selectionné:   "+item.name);
 			//Pour eviter la concatenation de contenu 
 			$( ".modal-body" ).empty();
-
 			//Creation du Modal d'un personnage
 			$(".modal-body").append(
 				"<ul class='list-group info'>"+
@@ -73,7 +99,7 @@ new Vue({
 					"<li class='list-group-item list-group-item-dark'><h5>Films:</h5>"+
 					"</li>"+
 				"</ul>");
-
+			//"FOR" pour creer les elements de chaque film dans le modal
 			for (var i = 0; i < item.films.length; i++)
 			{
 				this.$http.get(item.films[i]).then(function(film){
